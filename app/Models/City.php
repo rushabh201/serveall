@@ -12,4 +12,8 @@ class City extends Model
     public function state(){
         return $this->belongTo('App\Models\State', 'state_id' );
     }
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 }

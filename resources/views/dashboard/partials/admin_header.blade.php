@@ -5,7 +5,7 @@
             <ul class="navbar-nav theme-brand flex-row  text-center">
                 <li class="nav-item theme-logo">
                     <a href="index.html">
-                        <img src="{{asset('asset/img/logo.svg')}}" class="navbar-logo" alt="logo">
+                        <img src="{{asset('img/logo.svg')}}" class="navbar-logo" alt="logo">
                     </a>
                 </li>
                 <!-- <li class="nav-item theme-text">
@@ -45,13 +45,13 @@
             <ul class="navbar-item flex-row navbar-dropdown">
                 <li class="nav-item dropdown language-dropdown more-dropdown">
                     <div class="dropdown  custom-dropdown-icon">
-                        <a class="dropdown-toggle btn" href="#" role="button" id="langDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('asset/img/ca.png')}}" class="flag-width" alt="flag"><span>English</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+                        <a class="dropdown-toggle btn" href="#" role="button" id="langDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('img/ca.png')}}" class="flag-width" alt="flag"><span>English</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="langDropdown">
-                            <a class="dropdown-item" data-img-value="de" data-value="German" href="javascript:void(0);"><img src="{{asset('asset/img/de.png')}}" class="flag-width" alt="flag"> German</a>
-                            <a class="dropdown-item" data-img-value="jp" data-value="Japanese" href="javascript:void(0);"><img src="{{asset('asset/img/jp.png')}}" class="flag-width" alt="flag"> Japanese</a>
-                            <a class="dropdown-item" data-img-value="fr" data-value="French" href="javascript:void(0);"><img src="{{asset('asset/img/fr.png')}}" class="flag-width" alt="flag"> French</a>
-                            <a class="dropdown-item" data-img-value="ca" data-value="English" href="javascript:void(0);"><img src="{{asset('asset/img/ca.png')}}" class="flag-width" alt="flag"> English</a>
+                            <a class="dropdown-item" data-img-value="de" data-value="German" href="javascript:void(0);"><img src="{{asset('img/de.png')}}" class="flag-width" alt="flag"> German</a>
+                            <a class="dropdown-item" data-img-value="jp" data-value="Japanese" href="javascript:void(0);"><img src="{{asset('img/jp.png')}}" class="flag-width" alt="flag"> Japanese</a>
+                            <a class="dropdown-item" data-img-value="fr" data-value="French" href="javascript:void(0);"><img src="{{asset('img/fr.png')}}" class="flag-width" alt="flag"> French</a>
+                            <a class="dropdown-item" data-img-value="ca" data-value="English" href="javascript:void(0);"><img src="{{asset('img/ca.png')}}" class="flag-width" alt="flag"> English</a>
                         </div>
                     </div>
                 </li>
@@ -186,7 +186,7 @@
                     <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
                         <div class="user-profile-section">
                             <div class="media mx-auto">
-                                <img src="{{asset('asset/img/profile-17.jpg')}}" class="img-fluid mr-2" alt="avatar">
+                                <img src="{{asset('img/profile-17.jpg')}}" class="img-fluid mr-2" alt="avatar">
                                 <div class="media-body">
                                     <h5>Sonia Shaw</h5>
                                     <p>Project Leader</p>
@@ -209,9 +209,15 @@
                             </a>
                         </div>
                         <div class="dropdown-item">
-                            <a href="auth_login.html">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> <span>Log Out</span>
-                            </a>
+                            <form action="{{route('logout')}}" method="POST">
+                                @csrf
+                                <button type="submit" style="position:relative; background:transparent; border:none;">
+                                    <a>
+                                        <!-- logout -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> <span>Log Out</span>
+                                    </a>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </li>

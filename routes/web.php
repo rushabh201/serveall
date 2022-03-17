@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+
+
 // use Spatie\Permission\Models\Permission;
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,16 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth', 'web']], function() {
     Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
+    // Route::resource('users', UserController::class);
+    Route::resource('vehicles', VehicleController::class);
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::get('users/create', [UserController::class, 'create'])->name('users.create');
+    Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::get('users/{id}/show', [UserController::class, 'show'])->name('users.show');
+    Route::post('users/create', [UserController::class, 'store'])->name("users.store");
+    Route::delete('users/{id}', [UserController::class, 'destroy'])->name("users.destroy");
+    Route::put("users/{id}", [UserController::class, 'update'])->name("users.update");
+    Route::patch("users/{id}", [UserController::class, 'update']);
     // Route::get('/user', function () { return view('dashboard.users.users'); })->name('user');
 });
 

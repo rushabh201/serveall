@@ -15,7 +15,11 @@ class Image extends Model
     ];
 
     public function user(){
-        return $this->hasMany('App\Models\User','name','profile_image');
+        return $this->hasMany('App\Models\User','profile_image','name');
+    }
+
+    public function vehicle(){
+        return $this->belongsToMany('App\Models\Vehicle');
     }
 
 }

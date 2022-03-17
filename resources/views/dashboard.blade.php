@@ -522,7 +522,7 @@
 
                                 <div class="media">
                                     <div class="w-img">
-                                        <img src="{{asset('asset/img/profile-19.jpg')}}" alt="avatar">
+                                        <img src="{{asset('img/profile-19.jpg')}}" alt="avatar">
                                     </div>
                                     <div class="media-body">
                                         <h6>Jimmy Turner</h6>
@@ -553,7 +553,7 @@
 
                                 <div class="media">
                                     <div class="w-img">
-                                        <img src="{{asset('asset/img/g-8.png')}}" alt="avatar">
+                                        <img src="{{asset('img/g-8.png')}}" alt="avatar">
                                     </div>
                                     <div class="media-body">
                                         <h6>Dev Summit - New York</h6>
@@ -564,10 +564,10 @@
                                 <div class="card-bottom-section">
                                     <h5>4 Members Going</h5>
                                     <div class="img-group">
-                                        <img src="{{asset('asset/img/profile-19.jpg')}}" alt="avatar">
-                                        <img src="{{asset('asset/img/profile-6.jpg')}}" alt="avatar">
-                                        <img src="{{asset('asset/img/profile-8.jpg')}}" alt="avatar">
-                                        <img src="{{asset('asset/img/profile-3.jpg')}}" alt="avatar">
+                                        <img src="{{asset('img/profile-19.jpg')}}" alt="avatar">
+                                        <img src="{{asset('img/profile-6.jpg')}}" alt="avatar">
+                                        <img src="{{asset('img/profile-8.jpg')}}" alt="avatar">
+                                        <img src="{{asset('img/profile-3.jpg')}}" alt="avatar">
                                     </div>
                                     <a href="javascript:void(0);" class="btn">View Details</a>
                                 </div>
@@ -642,13 +642,13 @@
                                             <span class="avatar-title">+6</span>
                                         </div>
                                         <div class="avatar translateY-axis">
-                                            <img alt="avatar" src="{{asset('asset/img/profile-8.jpg')}}"/>
+                                            <img alt="avatar" src="{{asset('img/profile-8.jpg')}}"/>
                                         </div>
                                         <div class="avatar translateY-axis">
-                                            <img alt="avatar" src="{{asset('asset/img/profile-12.jpg')}}"/>
+                                            <img alt="avatar" src="{{asset('img/profile-12.jpg')}}"/>
                                         </div>
                                         <div class="avatar translateY-axis">
-                                            <img alt="avatar" src="{{asset('asset/img/profile-19.jpg')}}"/>
+                                            <img alt="avatar" src="{{asset('img/profile-19.jpg')}}"/>
                                         </div>
                                         
                                     </div>
@@ -671,13 +671,13 @@
 @section('javascript')
 
    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-   <link href="{{asset('asset/plugins/apex/apexcharts.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('asset/css/dashboard/dash_2.css')}}" rel="stylesheet" type="text/css" />
+   <link href="{{asset('plugins/apex/apexcharts.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/dashboard/dash_2.css')}}" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-    <script src="{{asset('asset/plugins/apex/apexcharts.min.js')}}"></script>
-    <script src="{{asset('asset/js/dashboard/dash_2.js')}}"></script>
+    <script src="{{asset('plugins/apex/apexcharts.min.js')}}"></script>
+    <script src="{{asset('js/dashboard/dash_2.js')}}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
 @endsection

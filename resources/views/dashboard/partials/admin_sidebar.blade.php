@@ -6,7 +6,8 @@
                 <div class="profile-info">
                     <figure class="user-cover-image"></figure>
                     <div class="user-info">
-                        <img src="{{asset('asset/img/profile-1.jpg')}}" alt="avatar">
+                        <img class="dashboardImg" alt="avatar" @if(auth()->user()->profile_image) src="{{asset('uploads/')}}/{{auth()->user()->profile_image}}"  @else src="https://via.placeholder.com/150"   @endif >
+                        <!-- <img src="{{asset('img/profile-1.jpg')}}" alt="avatar"> -->
                         <h6 class="">{{ auth()->user()->name }}</h6>
                         <p class="">{{ auth()->user()->getRoleNames()->first() }}</p>
                     </div>
@@ -37,12 +38,21 @@
                     <li class="menu">
                         <a href="/roles"  aria-expanded="false" class="dropdown-toggle">
                             <div class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-check"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
                                 <span>Roles</span>
                             </div>
                         </a>
                     </li>
                     @endrole
+
+                    <li class="menu">
+                        <a href="/vehicles"  aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                                <span>Vehicles</span>
+                            </div>
+                        </a>
+                    </li>
 
                     <!-- <li class="menu">
                         <a href="#dashboard"  data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
@@ -66,7 +76,7 @@
                         </ul>
                     </li> -->
 
-                    <li class="menu md-visible menu-heading">
+                    <!-- <li class="menu md-visible menu-heading">
                         <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Apps</span></div>
                     </li>
 
@@ -613,7 +623,7 @@
                             </div>
                         </a>
                     </li>
-                    
+                     -->
                 </ul>
                 
             </nav>

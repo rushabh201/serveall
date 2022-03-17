@@ -10,6 +10,10 @@ class State extends Model
     use HasFactory;
 
     public function city(){
-        return $this->hasMany('App/Models/City');
+        return $this->hasMany('App\Models\City');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
     }
 }

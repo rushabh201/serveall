@@ -25,7 +25,7 @@
                                     <div class="form-group">
                                         <label>Profile Image:</label>
                                         <span class="usr-img-frame mr-2 rounded-circle">
-                                            <img alt="avatar" class="img-fluid rounded-circle" src="{{asset('asset/img/boy.png')}}">
+                                            <img alt="avatar" class="img-fluid rounded-circle showImg" @if($user->profile_image) src="{{asset('uploads/')}}/{{$user->profile_image}}"  @else src="https://via.placeholder.com/150"   @endif>
                                         </span>
                                     </div>
                                 </div>

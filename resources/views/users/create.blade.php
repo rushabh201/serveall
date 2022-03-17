@@ -63,36 +63,22 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label>State:</label>
-                                        <select id="state-dd" name="state" class="form-control basic selectpicker" data-toggle="dropdown" data-live-search="true">
+                                        <select id="state-dd" name="state" class="form-control basic selectpicker"  data-live-search="true">
                                             <option selected>Open this select menu</option>
-                                            <!-- <option value="Gujarat">Gujarat</option> -->
-                                            <!-- <option value="Rajsthan">Rajsthan</option> -->
                                             @foreach ($states as $data)
                                             <option value="{{$data->id}}" data-tokens="{{$data->name}}">
                                                 {{$data->name}}
                                             </option>
                                             @endforeach
-                                      
-                                            <!-- @foreach($states as $state) 
-                                            <option value="{{ $state }}" >{{$state}}</option>
-                                            @endforeach -->
-                                            <!-- <option value="Delhi">Delhi</option> -->
                                         </select>
-                                     
-                                        <!-- {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','custom-select', 'custom-select-lg')) !!} -->
                                     </div>
                                 </div>
                              
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label>City:</label>
-                                        <!-- <select class="selectpicker" data-live-search="true">
-                          
-                                        </select> -->
                                         <select id="city-dd" name="city" class="form-control" data-live-search="true">
-                                   
                                         </select>
-                                        <!-- {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','custom-select', 'custom-select-lg')) !!} -->
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -138,6 +124,7 @@
                             <!-- {!! Form::close() !!} -->
                         </form>
 
+                    
                         </div>
                     </div>
                 </div>
@@ -146,13 +133,13 @@
 
 @section('javascript')
 
-<script src="{{asset('asset/js/custom.js')}}"></script>
-<!-- <script src="{{asset('asset/plugins/select2/custom-select2.js')}}"></script>
-<script src="{{asset('asset/plugins/select2/select2.min.js')}}"></script> -->
+<script src="{{asset('js/custom.js')}}"></script>
+<!-- <script src="{{asset('plugins/select2/custom-select2.js')}}"></script>
+<script src="{{asset('plugins/select2/select2.min.js')}}"></script> -->
 
-<script src="{{asset('asset/plugins/bootstrap-select/bootstrap-select.min.js')}}"></script>
-<link rel="stylesheet" href="{{asset('asset/plugins/bootstrap-select/bootstrap-select.min.css')}}" /> 
-<!-- <link rel="stylesheet" href="{{asset('asset/plugins/select2/select2.min.css')}}" />  -->
+<script src="{{asset('plugins/bootstrap-select/bootstrap-select.min.js')}}"></script>
+<link rel="stylesheet" href="{{asset('plugins/bootstrap-select/bootstrap-select.min.css')}}" /> 
+<!-- <link rel="stylesheet" href="{{asset('plugins/select2/select2.min.css')}}" />  -->
 <script> 
 
     function readURL(input) {
@@ -171,11 +158,13 @@
         $("#profile_image").change(function(){
             $('img#category-img-tag').show();
             readURL(this);
+            // $('label.custom-file-label').get(this.value).lastIndexOf('/').html();
         });
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).ready(function () {
+    image_init();
     $('#state-dd').on('change', function () {
         var idState = this.value;
         $("#city-dd").html('');
@@ -188,14 +177,25 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (res) {
+           
+                // $('button[data-id=city-dd] .dropdown-menu.inner').html('');
+                // var int = 1;
+                // $.each(res.cities, function (key, value) {
+
+                //     $(".dropdown-menu.inner").append('<a class="dropdown-item" tabindex="1" data-original-index="' + int + '"><span class="dropdown-item-inner " data-tokens="' + value.name  + '" role="option" aria-disabled="false" aria-selected="false"><span class="text">' + value.name  + '</span><span class="  check-mark"></span></span></a>');
+                //     int += 1;
+                // });
+                // image_init();
                 $('#city-dd').html('<option value="">Select City</option>');
                 $.each(res.cities, function (key, value) {
                     $("#city-dd").append('<option value="' + value
                         .id + '" data-tokens="' + value.name +'">' + value.name + '</option>');
                 });
-                // $.each(res.cities, function (key, value) {
-                //     $(".dropdown-menu.inner").append('<a class="dropdown-item"><span class="dropdown-item-inner " data-tokens="' + value.name  + '" role="option" aria-disabled="false" aria-selected="false"><span class="text">' + value.name  + '</span><span class="  check-mark"></span></span></a>');
-                //  });
+                // image_init();
+                
+            },
+            fail: function(res) {
+                console.log('failed request!');
             }
         })
         // .then( $("#city-dd").addClass('selectpicker'));

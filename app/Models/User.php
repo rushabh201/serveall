@@ -37,4 +37,19 @@ class User extends Authenticatable
     {
     	return $this->hasMany('App\Models\Image','profile_image','name');
     }
+
+    public function vehicle()
+    {
+    	return $this->hasMany('App\Models\Vehicle');
+    }
+
+    public function cities()
+    {
+        return $this->hasOne('App\Models\City', "id", "city");
+    }
+
+    public function states()
+    {
+        return $this->hasOne('App\Models\State', "id", "state");
+    }
 }

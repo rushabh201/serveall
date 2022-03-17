@@ -83,16 +83,16 @@
 @section('javascript')
 
     <!-- BEGIN PAGE LEVEL CUSTOM SCRIPTS -->
-    <script src="{{asset('asset/plugins/table/datatable/datatables.js')}}"></script>
+    <script src="{{asset('plugins/table/datatable/datatables.js')}}"></script>
     <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
-    <script src="{{asset('asset/plugins/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('asset/plugins/table/datatable/button-ext/jszip.min.js')}}"></script>    
-    <script src="{{asset('asset/plugins/table/datatable/button-ext/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('asset/plugins/table/datatable/button-ext/buttons.print.min.js')}}"></script>
+    <script src="{{asset('plugins/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('plugins/table/datatable/button-ext/jszip.min.js')}}"></script>    
+    <script src="{{asset('plugins/table/datatable/button-ext/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('plugins/table/datatable/button-ext/buttons.print.min.js')}}"></script>
     
-    <link rel="stylesheet" type="text/css" href="{{asset('asset/plugins/table/datatable/datatables.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('asset/plugins/table/datatable/custom_dt_html5.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('asset/plugins/table/datatable/dt-global_style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('plugins/table/datatable/datatables.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('plugins/table/datatable/custom_dt_html5.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('plugins/table/datatable/dt-global_style.css')}}">
     <script>
         $('#html5-extension').DataTable( {
             "dom": "<'dt--top-section'<'row'<'col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center'B><'col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center mt-md-0 mt-3'f>>>" +

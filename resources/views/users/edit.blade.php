@@ -31,7 +31,7 @@
                             </div>
                             @endif
 
-                        <form method='POST' action="{{ route('users.update',$user->id) }}" accept-charset='UTF-8'>
+                        <form method='POST' action="{{ route('users.update',$user->id) }}" enctype="multipart/form-data" accept-charset='UTF-8'>
                             @method('PUT')
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                            
@@ -68,19 +68,25 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label>State:</label>
-                                        <select name="state" class="form-control">
-                                             <option value="{{ $user->state }}" @if($user->state) @endif>{{ $user->state }}</option> 
+                                        <select id="state-dd" name="state" class="form-control" data-toggle="dropdown" data-live-search="true">
+                                        @foreach ($states as $data)
+                                            <option value="{{$data->id}}" data-tokens="{{$data->name}}" {{ ($data->id == $user->state ) ? "selected" : "" }} >
+                                                {{$data->name}}
+                                            </option>
+                                        @endforeach
                                         </select>
                                     </div>
                                 </div>
+                                
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label>City:</label>
-                                        <select name="city" class="form-control">
-                                            <!-- <option selected="{{ $user->city }}">{{ $user->city }}</option> -->
-                                            <option selected value="Surat">Surat</option>
-                                            <option value="Bharuch">Bharuch</option>
-                                            <option value="Ahemdabad">Ahemdabad</option>
+                                        <select id="city-dd" name="city" class="form-control">
+                                            @foreach($allcities as $data)
+                                                <option value="{{$data->id}}" data-tokens="{{$data->name}}" {{ ($data->id == $user->city) ? "selected" : '' }}> 
+                                                    {{$data->name}}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -114,8 +120,13 @@
                                     <div class="form-group">
                                         <label>Upload Profile Image: </label>
                                         <div class="custom-file mb-4">
-                                            <input type="file" class="custom-file-input" id="profile_image" name="profile_image" value=" {{$user->profile_image}}g">
-                                            <label class="custom-file-label" for="profile_image">Choose file</label>
+                                            <input type="file" class="custom-file-input" id="profile_image" name="profile_image">
+                                            <label class="custom-file-label" for="profile_image">{{$user->profile_image}}</label>
+                                        </div>
+                                        <img src="#" id="category-img-tag" style="display:none;" width="200px" />
+                                        <label class="mt-3">Uploaded Profile Image: </label>
+                                        <div>
+                                            <img alt="avatar" class="img-fluid rounded-circle showImg"  @if($user->profile_image) src="{{asset('uploads/')}}/{{$user->profile_image}}"  @else src="https://via.placeholder.com/150"   @endif >
                                         </div>
                                     </div>
                                 </div>
@@ -130,4 +141,71 @@
                 </div>
             </div>
 
+@endsection
+
+@section('javascript')
+
+<script src="{{asset('js/custom.js')}}"></script>
+<!-- <script src="{{asset('plugins/select2/custom-select2.js')}}"></script>
+<script src="{{asset('plugins/select2/select2.min.js')}}"></script> -->
+
+<script src="{{asset('plugins/bootstrap-select/bootstrap-select.min.js')}}"></script>
+<link rel="stylesheet" href="{{asset('plugins/bootstrap-select/bootstrap-select.min.css')}}" /> 
+<!-- <link rel="stylesheet" href="{{asset('plugins/select2/select2.min.css')}}" />  -->
+<script> 
+
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    $('#category-img-tag').attr('src', e.target.result);
+          
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        $("#profile_image").change(function(){
+            $('img#category-img-tag').show();
+            readURL(this);
+        });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+    $('#state-dd').on('change', function () {
+        var idState = this.value;
+        $("#city-dd").html('');
+        $.ajax({
+            url: "{{url('api/fetch-cities')}}",
+            type: "POST",
+            data: {
+                state_id: idState,
+                _token: '{{csrf_token()}}'
+            },
+            dataType: 'json',
+            success: function (res) {
+                $('#city-dd').html('<option value="">Select City</option>');
+                $.each(res.cities, function (key, value) {
+                    $("#city-dd").append('<option value="' + value
+                        .id + '" data-tokens="' + value.name +'">' + value.name + '</option>');
+                });
+                // $.each(res.cities, function (key, value) {
+                //     $(".dropdown-menu.inner").append('<a class="dropdown-item"><span class="dropdown-item-inner " data-tokens="' + value.name  + '" role="option" aria-disabled="false" aria-selected="false"><span class="text">' + value.name  + '</span><span class="  check-mark"></span></span></a>');
+                //  });
+            }
+        })
+        // .then( $("#city-dd").addClass('selectpicker'));
+        // $("#city-dd").select2();
+       
+    });
+});
+</script>
+<style>
+    .bootstrap-select.btn-group .dropdown-menu {
+        max-height: 217.953px !important;
+    }
+</style>
 @endsection

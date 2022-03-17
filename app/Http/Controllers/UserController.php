@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\State;
+use App\Models\Brand;
 use App\Models\City;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
@@ -28,7 +29,11 @@ class UserController extends Controller
     public function index(Request $request)
     {
       
-        $data = User::orderBy('id','DESC')->paginate(60);
+        $data = User::with('cities', "states")->orderBy('id','DESC')->paginate(60);
+        // $pathImg = public_path('asset\uploads\Capture.PNG');
+        // $pathImg = ;
+        // return $data[0];
+       
         return view('users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -45,6 +50,7 @@ class UserController extends Controller
         $roles = Role::pluck('name','name')->all();
         // $cities = City::get();
         $states = State::get(["name", "id"]);
+        
         // $states = State::all()->pluck('name');
         // return $cities;
         return view('users.create',compact('roles', "roleNames", "states" ));
@@ -70,21 +76,22 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
 
-        if ($request->hasFile('uploadfile')) {
+        if ($request->hasFile('profile_image')) {
 
             $imagename = $request->file('profile_image')->getClientOriginalName();
         
 
-            $path = $request->file('profile_image')->storeAs('/asset/uploads',$imagename);
+            $path = $request->file('profile_image')->storeAs('/uploads',$imagename);
             $save = new Image;
 
             $save->name = $imagename;
             $save->path = $path;
             $save->save();
        
-            $request->file('profile_image')->move(public_path('asset/uploads'),$imagename);
+            
             // $input['profile_image'] = Image::$user->path->get();
-            $input['profile_image'] = $path;
+            $input['profile_image'] = $imagename;
+            $request->file('profile_image')->move(public_path('uploads'),$imagename);
         }
 
         $user = User::create($input);
@@ -114,15 +121,17 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = User::with('cities',"states")->find($id);
         $roles = Role::all()->pluck('name');
+        $states = State::get(["name", "id"]);
+
         // $roles = Role::pluck('name','name')->all();
         // $roles = Role::all();
-      
+        $allcities = City::where('state_id', $user->states->id)->get();
         $userRole = $user->roles->all();
         $userRoles =  $userRole[0]->name;
-        // return $userRoles;
-        return view('users.edit',compact('user','roles','userRole','userRoles'));
+        // return $user;
+        return view('users.edit',compact('user','roles','userRole','userRoles', "states", "allcities"));
 
         // $roles = Role::pluck('name','name')->all();
         // $userRole = $user->roles->pluck('name','name')->all();
@@ -153,7 +162,23 @@ class UserController extends Controller
         }else{
             $input = Arr::except($input,array('password'));    
         }
-    
+
+        if ($request->hasFile('profile_image')) {
+
+            $imagename = $request->file('profile_image')->getClientOriginalName();
+        
+            $path = $request->file('profile_image')->storeAs('/uploads',$imagename);
+            $save = new Image;
+
+            $save->name = $imagename;
+            $save->path = $path;
+            $save->save();
+       
+            // $input['profile_image'] = Image::$user->path->get();
+            $input['profile_image'] = $imagename;
+            $request->file('profile_image')->move(public_path('uploads'),$imagename);
+        }
+
         $user = User::find($id);
       
         $user->update($input);
@@ -176,5 +201,47 @@ class UserController extends Controller
         User::find($id)->delete();
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
+    }
+
+    public function index_brand()
+    {
+        return redirect()->route('vechicles.index');
+    }
+ 
+    public function create_brand(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|unique:brand,name',
+        ]);
+
+        $input = $request->all();
+        $brand = new Brand;
+
+        return redirect()->route('vehicles.index')->with('success',"Brand added successfully");
+    }
+
+    public function store_brand()
+    {
+        
+    }
+    
+    public function show_brand()
+    {
+        
+    }
+    
+    public function edit_brand()
+    {
+        
+    }
+
+    public function update_brand()
+    {
+        
+    }
+
+    public function destroy_brand()
+    {
+        
     }
 }

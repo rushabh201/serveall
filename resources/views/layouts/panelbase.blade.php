@@ -6,35 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>ServeAll - One Stop Automotive Solution</title>
-    <link rel="icon" type="image/x-icon" href="{{asset('asset/img/favicon.ico')}}"/>
-    <link href="{{asset('asset/css/loader.css')}}" rel="stylesheet" type="text/css" />
-    <script src="{{asset('asset/js/loader.js')}}"></script>
+    <link rel="icon" type="image/x-icon" href="{{asset('img/favicon.ico')}}"/>
+    <link href="{{asset('css/loader.css')}}" rel="stylesheet" type="text/css" />
+    <script src="{{asset('js/loader.js')}}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&amp;display=swap" rel="stylesheet">
-    <link href="{{asset('asset/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('asset/css/plugins.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('css/plugins.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('plugins/animate/animate.css')}}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
-    
+        
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    <script src="{{asset('asset/js/libs/jquery-3.1.1.min.js')}}"></script>
-    <script src="{{asset('asset/js/popper.min.js')}}"></script>
-    <script src="{{asset('asset/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('asset/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-
-    <script type="text/javascript" src="{{asset('asset/js/app.js')}}"></script>
-    <script type="text/javascript">
-        window.onload = app.init();
-    </script>
-    <!-- <script type="text/javascript" language="javascript">
+    <script src="{{asset('js/libs/jquery-3.1.1.min.js')}}"></script>
+    <script src="{{asset('js/popper.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script src="{{asset('plugins/highlight/highlight.pack.js')}}"></script>
+    <script src="{{asset('js/custom.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+    <script type="text/javascript" language="javascript">
     window.onload = function()
         {
             App.init();
         };
-    </script> -->
-    <script src="{{asset('asset/js/custom.js')}}"></script>
+    </script>
+
     <!-- END GLOBAL MANDATORY SCRIPTS -->
   
 </head>
